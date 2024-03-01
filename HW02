@@ -1,0 +1,44 @@
+import datetime
+import unittest
+
+def my_brand(hw_assignment):
+    name = "Nanda Eswar Vimal Boppudi"
+    course = "Course 2023F-SSW567-A"
+    pattern = "====%s===="
+    now = datetime.datetime.now()
+    now = now.strftime("%d/%m/%Y %H:%M:%S")
+
+    print(pattern % name)
+    print(pattern % course)
+    print(pattern % hw_assignment)
+    print(pattern % now)
+
+my_brand('Hw 01')
+print('')
+
+def classify_triangle(a, b, c):
+    if a <= 0 or b <= 0 or c <= 0:
+        return "Invalid"
+    if a == b == c:
+        return "Equilateral"
+    elif a**2 + b**2 == c**2 or a**2 + c**2 == b**2 or b**2 + c**2 == a**2:
+        if a == b or b == c or a == c:
+            return "Isosceles and Right"
+        else:
+            return "Scalene and Right"
+    elif a == b or b == c or a == c:
+        return "Isosceles"
+    else:
+        return "Scalene"
+
+class TestTriangleClassification(unittest.TestCase):
+    def test_triangle(self):
+        self.assertEqual(classify_triangle(5, 5, 5), "Equilateral")
+        self.assertEqual(classify_triangle(3, 3, 4), "Isosceles")
+        self.assertEqual(classify_triangle(8, 14, 17), "Scalene")
+        self.assertEqual(classify_triangle(3, 4, 5), "Scalene and Right")
+
+if name == "_main_":
+    classify_triangle(2,5,9)
+    classify_triangle(3,3,3)
+    unittest.main()
